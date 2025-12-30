@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.crud import crud_book
@@ -6,6 +7,16 @@ from app import crud, schemas
 from app.api import deps
 
 router = APIRouter()
+
+@router.get("/", response_model=List[book.Book])
+def get_books(
+  limit: int = 1,
+  db: Session = Depends(deps.get_db)
+):
+  """Get all books in the database"""
+  books = crud_book.get_books(db, limit=limit)
+
+  return books
 
 @router.get("/{book_id}", response_model=book.Book)
 def read_book(
