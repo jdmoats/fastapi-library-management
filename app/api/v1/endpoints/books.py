@@ -10,11 +10,13 @@ router = APIRouter()
 
 @router.get("/", response_model=List[book.Book])
 def get_books(
-  limit: int = 1,
+  limit: int = 100,
+  author: str = "",
   db: Session = Depends(deps.get_db)
 ):
+
   """Get all books in the database"""
-  books = crud_book.get_books(db, limit=limit)
+  books = crud_book.get_books(db, limit=limit, author=author)
 
   return books
 
