@@ -12,7 +12,7 @@ import sys
 import os
 
 from app.db.session import Base, DATABASE_URL
-from app.models import book
+from app.models import book, user
 
 sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
 

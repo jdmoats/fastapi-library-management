@@ -1,6 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
 from app.api.v1.api import api_router
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(title="Library Management API")
 
